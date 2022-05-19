@@ -1,3 +1,13 @@
+% This function provides you with the mean power based on a certain
+% frequency, certain range of electrodes and specific conditions. 
+% First it looks at the epoch and determines whether or not it is of
+% interest. If so we calculate the mean power spectrum desnity for specific
+% electrodes 
+% Lastly we cluster the elctrodes (means of means), so we have a mean power
+% spectral density for the cluster of electrodes, related to the condition
+% we are interested in, in relation to the participant at hand. 
+
+
 function [meanAlphaForConditionAndLocation, meanHighBetaForConditionAndLocation, meanLowBetaForConditionnAndLocation, meanBetaForConditionAndLocation] = MeanPowerBasedOnLocationAndCondition(epochs, electrodesOfInterest, conditionsOfInterest, EEG)
 
 counterIndex = 1; 

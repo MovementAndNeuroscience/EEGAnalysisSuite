@@ -1,3 +1,6 @@
+% This function 
+
+
 function [meanAlphaForConditionAndLocation, meanHighBetaForConditionAndLocation, meanLowBetaForConditionnAndLocation, meanBetaForConditionAndLocation] = MeanPowerBasedOnLocationAndCondition(epochs, electrodesOfInterest, conditionsOfInterest, EEG)
 
 counterIndex = 1; 
