@@ -7,10 +7,8 @@ EEGLabPath = 'C:\eeglab2022.0'; % change the filepath for your eeglab
 electrodes = FindNumberOfElectrodes(files, filepath, EEGLabPath); 
 maxNumberOfConditions = FindMaxNumberOfConditions(files, filepath, EEGLabPath); 
 NumberOfFiles = size(files,1);
-
-groupNumbers = [1 ;2]; 
-groupSearchCriteria = ["D"; "y"];
-SubjectGroupArray = size(files,1);
+groupNumbers = {1 2}; 
+groupSearchCriteria = {'d','y'};
 
 %% Create Empty 3D Matrixes and 2D Conditions Matrixes
 psd_AllAlpha = zeros(NumberOfFiles,maxNumberOfConditions,electrodes);
@@ -19,13 +17,11 @@ psd_AllHighBeta = zeros(NumberOfFiles,maxNumberOfConditions,electrodes);
 psd_AllBeta = zeros(NumberOfFiles,maxNumberOfConditions,electrodes);
 
 conditionsAll(1:NumberOfFiles, 1:maxNumberOfConditions) = 999;
-NamesOnAllFiles(1:NumberOfFiles) = "fileName"; 
+NamesOnAllFiles(1:NumberOfFiles) = 'fileName'; 
 %%
 for fileIndex=1:NumberOfFiles
-clear cond
 
 NamesOnAllFiles(fileIndex) = files(fileIndex).name; 
-SubjectGroupArray(fileIndex) = ProvideGroupNumber(groupNumbers, groupSearchCriteria,files(fileIndex).name);
 
 addpath(genpath(EEGLabPath)); 
 EEG = pop_loadset('filename',files(fileIndex).name,'filepath',filepath);
