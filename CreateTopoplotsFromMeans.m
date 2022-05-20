@@ -14,5 +14,7 @@ topoplot(emptyPowerArray,'eeg64locs.loc','maplimits' ,[-1,1])
        
 title(FigureTitle)
 colorbar
+figureSaveName = append(FigureTitle,'.fig');
+saveas(gcf,figureSaveName)
 
 end
