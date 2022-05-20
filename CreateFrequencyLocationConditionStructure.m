@@ -171,3 +171,8 @@ resultingTable = renamevars(resultingTable,["Var1","Var2"],["NameOfFiles","Subje
 
 filename = 'MeanFrequencyPowerOverLocationsAndConditions.xlsx';
 writetable(resultingTable,filename,'Sheet',1,'Range','A1')
+
+%% FIGURE CREATION 
+CreateTopoplotsForDifferentPermutations(resultingTable, frontalElectrodes, motorBihemisphericElectrodes, leftMotorElectrodes, rightMotorElectrodes);
+
+
