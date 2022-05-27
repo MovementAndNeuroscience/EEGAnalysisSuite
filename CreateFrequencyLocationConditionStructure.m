@@ -1,8 +1,24 @@
 % The purpose of this script is to calculate FrequencyPower X ElectrodeCluster X Condition per person 
 % and collect it in an Excel file for further descriptive analysis. 
 
+% We Seperate the script into four different sections. 
+% SETUP, CALCULATE, ARRANGE AND PRESENT.
+
+% SETUP
+% This section will prepare different arrays, variables and contrains to be
+% used throughout the script 
+
+% CALCULATE
+% This part of the script will use the different elements from the setup to
+% calculate different statistics 
+
+% ARRANGE AND PRESENT
+% This part will present the calculations into different exportable tables
+% and figures 
+
+%% SETUP 
 % First we direct matlab to where all the data files are. 
-% the nwe figure out the number og electrodes. 
+% the we figure out the number og electrodes. 
 % which of the test participant's dataset has most trials 
 % and we will get the total number of files 
 
@@ -10,8 +26,6 @@
 % then you write the first letter found in each of those defined groups. 
 % in this case our grownups datasets starts with a "D" and our younglings
 % dataset starts with a "y"
-
-%% SETUP 
 filepath= 'C:\Users\tvh307\OneDrive - University of Copenhagen\Documents\MovementNeuroscience\ReScale\ReScaleEEGData'; % put your filepath
 files = dir(fullfile(filepath, '*.set'));
 
@@ -151,7 +165,7 @@ rmpath(genpath(EEGLabPath));
 end
 
 %% ARRANGE AND PRESENT 
-% After we have calculated the mean frequency pwoer for all subjects the
+% After we have calculated the mean frequency power for all subjects the
 % different arrays / vectors have to be arranged in a table in order to be
 % exported to a readable Excel file. 
 resultingTable = table(NamesOnAllFiles', SubjectGroupArray', mean_Alpha_Frontal_Symmetry, mean_HighBeta_Frontal_Symmetry, mean_LowBeta_Frontal_Symmetry...
@@ -173,6 +187,8 @@ filename = 'MeanFrequencyPowerOverLocationsAndConditions.xlsx';
 writetable(resultingTable,filename,'Sheet',1,'Range','A1')
 
 %% FIGURE CREATION 
+%this function creates Topoplots for the different areas of interest
+%comparing two at a time. For instance right and left motor cortex. 
 CreateTopoplotsForDifferentPermutations(resultingTable, frontalElectrodes, motorBihemisphericElectrodes, leftMotorElectrodes, rightMotorElectrodes);
 
 

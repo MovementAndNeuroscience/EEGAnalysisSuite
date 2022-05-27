@@ -1,17 +1,34 @@
-% The purpose of this script is to calculate FrequencyPower X ElectrodeCluster X Condition per person 
-% and collect it in an Excel file for further descriptive analysis. 
+% The purpose of this script is to calculate FrequencyPower X Condition per person 
+% and collect it in different Excel file for descriptive statistics. 
+% Furthermore different Topoplots are created showcasing the different
+% Frequencypower X Condition X Subject groups permutation and visual differences between the
+% different conditions 
 
+% We Seperate the script into four different sections. 
+% SETUP, CALCULATE, ARRANGE AND PRESENT.
+
+% SETUP
+% This section will prepare different arrays, variables and contrains to be
+% used throughout the script 
+
+% CALCULATE
+% This part of the script will use the different elements from the setup to
+% calculate different statistics 
+
+% ARRANGE AND PRESENT
+% This part will present the calculations into different exportable tables
+% and figures 
+
+%% SETUP
 % First we direct matlab to where all the data files are. 
-% the nwe figure out the number og electrodes. 
+% then we figure out the number og electrodes. 
 % which of the test participant's dataset has most trials 
 % and we will get the total number of files 
 
 % next you define the participant groups by number. 
 % then you write the first letter found in each of those defined groups. 
-% in this case our grownups datasets starts with a "D" and our younglings
+% in this case our Adult datasets starts with a "D" and our Young
 % dataset starts with a "y"
-
-%% SETUP 
 filepath= 'C:\Users\tvh307\OneDrive - University of Copenhagen\Documents\MovementNeuroscience\ReScale\ReScaleEEGData'; % put your filepath
 files = dir(fullfile(filepath, '*.set'));
 
@@ -23,9 +40,8 @@ NumberOfFiles = size(files,1);
 groupNumbers = [1 ;2]; 
 groupSearchCriteria = ["D"; "y"];
 
-% Defining different locations and condition of interest 
+% Defining different condition of interest 
 % we are interested in three different condition categories 
-% and four different clusters of electrodes.
 
 symmetricConditions = [2,3]; 
 asymmetricConditions = [4,5];
@@ -35,7 +51,7 @@ allConditions = [2,3,4,5,6,7];
 AllElectrodes = [1:64];
 
 
-% Create Empty Arrays for the different frequency x location x condition permutations 
+% Create Empty Arrays for the different frequency x condition permutations 
 
 mean_Alpha_Symmetry = zeros(NumberOfFiles,size(AllElectrodes,2));
 mean_LowBeta_Symmetry = zeros(NumberOfFiles,size(AllElectrodes,2));
@@ -57,7 +73,8 @@ mean_LowBeta_All = zeros(NumberOfFiles,size(AllElectrodes,2));
 mean_HighBeta_All = zeros(NumberOfFiles,size(AllElectrodes,2));
 mean_Beta_All = zeros(NumberOfFiles,size(AllElectrodes,2));
 
-%and we want two arrays to keep track of subjects and groups of subjects. 
+% and we want two arrays to keep track of name of files (subjects) and
+% subjectgroups.
 
 NamesOnAllFiles(NumberOfFiles:1) = "fileName"; 
 SubjectGroupArray = size(files);
@@ -65,9 +82,9 @@ SubjectGroupArray = size(files);
 %% CALCULATE 
 % All these functions is per subject based. 
 % first we figure out which group the subject belongs to. 
-% Then we calculate the mean power of specific frequencies based on
-% conditions and electrode clusters. 
-% the function is called MeanPowerBasedOnLocationAndCondition
+% Then we calculate the mean power for each electrode 
+% based on specific frequencies and conditions 
+% the function is called MeanPowerPerElctrodeBasedOnCondition
 
 for fileIndex=1:NumberOfFiles
 
@@ -92,7 +109,7 @@ end
 
 %% ARRANGE AND PRESENT 
 % After we have calculated the mean frequency pwoer for all subjects the
-% different arrays / vectors have to be arranged in a table in order to be
+% different arrays / vectors have to be arranged in a tables in order to be
 % exported to a readable Excel file. 
 
 AlphaSymmetryTable = CreateAndConfigureTable(NamesOnAllFiles, SubjectGroupArray, mean_Alpha_Symmetry, 'AlphaSymmetryAllSubjects.xlsx');
@@ -133,6 +150,10 @@ LowBetaAllTable = CreateAndConfigureTable(NamesOnAllFiles, SubjectGroupArray,  m
 BetaAllTable = CreateAndConfigureTable(NamesOnAllFiles, SubjectGroupArray,  mean_Beta_All, 'BetaAllAllSubjects.xlsx');
 
 %% FIGURE CREATION 
+% with all the different tables established they are used to create
+% different topoplots showing frequency distributions based on frequency,
+% conditiion and subject groups. 
+
 addpath(genpath(EEGLabPath)); 
 
 FigureTitleGroup1 = 'Alpha (8-12 Hz) Power For Adult Performing Symmetric tasks';
@@ -271,6 +292,9 @@ figurelimitdif = [-0.5,0.5];
 CreateTopoplotsBasedOnTable(BetaAllTable, AllElectrodes,FigureTitleGroup1, FigureTitleGroup2, FigureTitleDifference, figurelimitG1, figurelimitG2, figurelimitdif );
 
 %% FIGURE CREATION SYMMETRIC VS ASYMMETRIC
+% unlike the figures above the following plots show differences between
+% different consitions, thus we need to create topoplots based on
+% two difference tables. 
 
 FigureTitleDifference1 = 'Difference in Alpha (8-12 Hz) Power between Symmetric (+) and Assymetric (-) Performed By Young';
 FigureTitleDifference2 = 'Difference in Alpha (8-12 Hz) Power between Symmetric (+) and Assymetric (-) Performed By Adult';
