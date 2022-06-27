@@ -167,25 +167,25 @@ CreateTopoplotsBasedOnTable(AlphaSymmetryTable, AllElectrodes,FigureTitleGroup1,
 FigureTitleGroup1 = 'High Beta (24-32 Hz) Power For Adult Performing Symmetric tasks';
 FigureTitleGroup2 = 'High Beta (24-32 Hz) Power For Young Performing Symmetric tasks';
 FigureTitleDifference = 'Difference in High Beta (24-32 Hz) Power between adults (+) and Youngs (-) Performing Symmetric tasks';
-figurelimitG1 = [-0.4,0.4];
-figurelimitG2 = [-0.4,0.4];
-figurelimitdif = [-0.4,0.4];
+figurelimitG1 = [-1,1];
+figurelimitG2 = [-1,1];
+figurelimitdif = [-0.5,0.5];
 CreateTopoplotsBasedOnTable(HighBetaSymmetryTable, AllElectrodes,FigureTitleGroup1, FigureTitleGroup2, FigureTitleDifference, figurelimitG1, figurelimitG2, figurelimitdif );
 
 FigureTitleGroup1 = 'Low Beta (14-22 Hz) Power For Adult Performing Symmetric tasks';
 FigureTitleGroup2 = 'Low Beta (14-22 Hz) Power For Young Performing Symmetric tasks';
 FigureTitleDifference = 'Difference in Low Beta (14-22 Hz) Power between adults (+) and Youngs (-) Performing Symmetric tasks';
-figurelimitG1 = [-0.4,0.4];
-figurelimitG2 = [-0.4,0.4];
-figurelimitdif = [-0.4,0.4];
+figurelimitG1 = [-1,1];
+figurelimitG2 = [-1,1];
+figurelimitdif = [-0.5,0.5];
 CreateTopoplotsBasedOnTable(LowBetaSymmetryTable, AllElectrodes,FigureTitleGroup1, FigureTitleGroup2, FigureTitleDifference, figurelimitG1, figurelimitG2, figurelimitdif );
 
 FigureTitleGroup1 = 'Beta (14-32 Hz) Power For Adult Performing Symmetric tasks';
 FigureTitleGroup2 = 'Beta (14-32 Hz) Power For Young Performing Symmetric tasks';
 FigureTitleDifference = 'Difference in Beta (14-32 Hz) Power between adults (+) and Youngs (-) Performing Symmetric tasks';
-figurelimitG1 = [-0.4,0.4];
-figurelimitG2 = [-0.4,0.4];
-figurelimitdif = [-0.4,0.4];
+figurelimitG1 = [-1,1];
+figurelimitG2 = [-1,1];
+figurelimitdif = [-0.5,0.5];
 CreateTopoplotsBasedOnTable(BetaSymmetryTable, AllElectrodes,FigureTitleGroup1, FigureTitleGroup2, FigureTitleDifference, figurelimitG1, figurelimitG2, figurelimitdif );
 
 %% FIGURE CREATION ASYMMETRY
@@ -196,31 +196,31 @@ FigureTitleGroup2 = 'Alpha (8-12 Hz) Power For Young Performing Asymmetric tasks
 FigureTitleDifference = 'Difference in Alpha (8-12 Hz) Power between adults (+) and Youngs (-) Performing Asymmetric tasks';
 figurelimitG1 = [-1.5,1.5];
 figurelimitG2 = [-1.5,1.5];
-figurelimitdif = [-0.4,0.4];
+figurelimitdif = [-1,1];
 CreateTopoplotsBasedOnTable(AlphaAsymmetryTable, AllElectrodes,FigureTitleGroup1, FigureTitleGroup2, FigureTitleDifference, figurelimitG1, figurelimitG2, figurelimitdif );
 
 FigureTitleGroup1 = 'High Beta (24-32 Hz) Power For Adult Performing Asymmetric tasks';
 FigureTitleGroup2 = 'High Beta (24-32 Hz) Power For Young Performing Asymmetric tasks';
 FigureTitleDifference = 'Difference in High Beta (24-32 Hz) Power between adults (+) and Youngs (-) Performing Asymmetric tasks';
-figurelimitG1 = [-0.4,0.4];
-figurelimitG2 = [-0.4,0.4];
-figurelimitdif = [-0.4,0.4];
+figurelimitG1 = [-1,1];
+figurelimitG2 = [-1,1];
+figurelimitdif = [-0.5,0.5];
 CreateTopoplotsBasedOnTable(HighBetaAsymmetryTable, AllElectrodes,FigureTitleGroup1, FigureTitleGroup2, FigureTitleDifference, figurelimitG1, figurelimitG2, figurelimitdif );
 
 FigureTitleGroup1 = 'Low Beta (14-22 Hz) Power For Adult Performing Asymmetric tasks';
 FigureTitleGroup2 = 'Low Beta (14-22 Hz) Power For Young Performing Asymmetric tasks';
 FigureTitleDifference = 'Difference in Low Beta (14-22 Hz) Power between adults (+) and Youngs (-) Performing Asymmetric tasks';
-figurelimitG1 = [-0.4,0.4];
-figurelimitG2 = [-0.4,0.4];
-figurelimitdif = [-0.4,0.4];
+figurelimitG1 = [-1,1];
+figurelimitG2 = [-1,1];
+figurelimitdif = [-0.5,0.5];
 CreateTopoplotsBasedOnTable(LowBetaAsymmetryTable, AllElectrodes,FigureTitleGroup1, FigureTitleGroup2, FigureTitleDifference, figurelimitG1, figurelimitG2, figurelimitdif );
 
 FigureTitleGroup1 = 'Beta (14-32 Hz) Power For Adult Performing Asymmetric tasks';
 FigureTitleGroup2 = 'Beta (14-32 Hz) Power For Young Performing Asymmetric tasks';
 FigureTitleDifference = 'Difference in Beta (14-32 Hz) Power between adults (+) and Youngs (-) Performing Asymmetric tasks';
-figurelimitG1 = [-0.4,0.4];
-figurelimitG2 = [-0.4,0.4];
-figurelimitdif = [-0.4,0.4];
+figurelimitG1 = [-1,1];
+figurelimitG2 = [-1,1];
+figurelimitdif = [-0.5,0.5];
 CreateTopoplotsBasedOnTable(BetaAsymmetryTable, AllElectrodes,FigureTitleGroup1, FigureTitleGroup2, FigureTitleDifference, figurelimitG1, figurelimitG2, figurelimitdif );
 
 %% FIGURE CREATION UNIMANUAL
@@ -230,31 +230,31 @@ FigureTitleGroup2 = 'Alpha (8-12 Hz) Power For Young Performing Unimanual tasks'
 FigureTitleDifference = 'Difference in Alpha (8-12 Hz) Power between adults (+) and Youngs (-) Performing Unimanaual tasks';
 figurelimitG1 = [-1.5,1.5];
 figurelimitG2 = [-1.5,1.5];
-figurelimitdif = [-0.4,0.4];
+figurelimitdif = [-1,1];
 CreateTopoplotsBasedOnTable(AlphaUnimanualTable, AllElectrodes,FigureTitleGroup1, FigureTitleGroup2, FigureTitleDifference, figurelimitG1, figurelimitG2, figurelimitdif );
 
 FigureTitleGroup1 = 'High Beta (24-32 Hz) Power For Adult Performing Unimanual tasks';
 FigureTitleGroup2 = 'High Beta (24-32 Hz) Power For Young Performing Unimanual tasks';
 FigureTitleDifference = 'Difference in High Beta (24-32 Hz) Power between adults (+) and Youngs (-) Performing Unimanaual tasks';
-figurelimitG1 = [-0.4,0.4];
-figurelimitG2 = [-0.4,0.4];
-figurelimitdif = [-0.4,0.4];
+figurelimitG1 = [-1,1];
+figurelimitG2 = [-1,1];
+figurelimitdif = [-0.5,0.5];
 CreateTopoplotsBasedOnTable(HighBetaUnimanualTable, AllElectrodes,FigureTitleGroup1, FigureTitleGroup2, FigureTitleDifference, figurelimitG1, figurelimitG2, figurelimitdif );
 
 FigureTitleGroup1 = 'Low Beta (14-22 Hz) Power For Adult Performing Unimanual tasks';
 FigureTitleGroup2 = 'Low Beta (14-22 Hz) Power For Young Performing Unimanual tasks';
 FigureTitleDifference = 'Difference in Low Beta (14-22 Hz) Power between adults (+) and Youngs (-) Performing Unimanaual tasks';
-figurelimitG1 = [-0.4,0.4];
-figurelimitG2 = [-0.4,0.4];
-figurelimitdif = [-0.4,0.4];
+figurelimitG1 = [-1,1];
+figurelimitG2 = [-1,1];
+figurelimitdif = [-0.5,0.5];
 CreateTopoplotsBasedOnTable(LowBetaUnimanualTable, AllElectrodes,FigureTitleGroup1, FigureTitleGroup2, FigureTitleDifference, figurelimitG1, figurelimitG2, figurelimitdif );
 
 FigureTitleGroup1 = 'Beta (14-32 Hz) Power For Adult Performing Unimanual tasks';
 FigureTitleGroup2 = 'Beta (14-32 Hz) Power For Young Performing Unimanual tasks';
 FigureTitleDifference = 'Difference in Beta (14-32 Hz) Power between adults (+) and Youngs (-) Performing Unimanaual tasks';
-figurelimitG1 = [-0.4,0.4];
-figurelimitG2 = [-0.4,0.4];
-figurelimitdif = [-0.4,0.4];
+figurelimitG1 = [-1,1];
+figurelimitG2 = [-1,1];
+figurelimitdif = [-0.5,0.5];
 CreateTopoplotsBasedOnTable(BetaUnimanualTable, AllElectrodes,FigureTitleGroup1, FigureTitleGroup2, FigureTitleDifference, figurelimitG1, figurelimitG2, figurelimitdif );
 
 %% FIGURE CREATION ALL TASKS 
@@ -264,31 +264,31 @@ FigureTitleGroup2 = 'Alpha (8-12 Hz) Power For Young Performing All tasks';
 FigureTitleDifference = 'Difference in Alpha (8-12 Hz) Power between adults (+) and Youngs (-) Performing All tasks';
 figurelimitG1 = [-1.5,1.5];
 figurelimitG2 = [-1.5,1.5];
-figurelimitdif = [-0.4,0.4];
+figurelimitdif = [-1,1];
 CreateTopoplotsBasedOnTable(AlphaAllTable, AllElectrodes,FigureTitleGroup1, FigureTitleGroup2, FigureTitleDifference, figurelimitG1, figurelimitG2, figurelimitdif );
 
 FigureTitleGroup1 = 'High Beta (24-32 Hz) Power For Adult Performing All tasks';
 FigureTitleGroup2 = 'High Beta (24-32 Hz) Power For Young Performing All tasks';
 FigureTitleDifference = 'Difference in High Beta (24-32 Hz) Power between adults (+) and Youngs (-) Performing All tasks';
-figurelimitG1 = [-0.4,0.4];
-figurelimitG2 = [-0.4,0.4];
-figurelimitdif = [-0.4,0.4];
+figurelimitG1 = [-1,1];
+figurelimitG2 = [-1,1];
+figurelimitdif = [-0.5,0.5];
 CreateTopoplotsBasedOnTable(HighBetaAllTable, AllElectrodes,FigureTitleGroup1, FigureTitleGroup2, FigureTitleDifference, figurelimitG1, figurelimitG2, figurelimitdif );
 
 FigureTitleGroup1 = 'Low Beta (14-22 Hz) Power For Adult Performing All tasks';
 FigureTitleGroup2 = 'Low Beta (14-22 Hz) Power For Young Performing All tasks';
 FigureTitleDifference = 'Difference in Low Beta (14-22 Hz) Power between adults (+) and Youngs (-) Performing All tasks';
-figurelimitG1 = [-0.4,0.4];
-figurelimitG2 = [-0.4,0.4];
-figurelimitdif = [-0.4,0.4];
+figurelimitG1 = [-1,1];
+figurelimitG2 = [-1,1];
+figurelimitdif = [-0.5,0.5];
 CreateTopoplotsBasedOnTable(LowBetaAllTable, AllElectrodes,FigureTitleGroup1, FigureTitleGroup2, FigureTitleDifference, figurelimitG1, figurelimitG2, figurelimitdif );
 
 FigureTitleGroup1 = 'Beta (14-32 Hz) Power For Adult Performing All tasks';
 FigureTitleGroup2 = 'Beta (14-32 Hz) Power For Young Performing All tasks';
 FigureTitleDifference = 'Difference in Beta (14-32 Hz) Power between adults (+) and Youngs (-) Performing All tasks';
-figurelimitG1 = [-0.4,0.4];
-figurelimitG2 = [-0.4,0.4];
-figurelimitdif = [-0.4,0.4];
+figurelimitG1 = [-1,1];
+figurelimitG2 = [-1,1];
+figurelimitdif = [-0.5,0.5];
 CreateTopoplotsBasedOnTable(BetaAllTable, AllElectrodes,FigureTitleGroup1, FigureTitleGroup2, FigureTitleDifference, figurelimitG1, figurelimitG2, figurelimitdif );
 
 %% FIGURE CREATION SYMMETRIC VS ASYMMETRIC
