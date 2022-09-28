@@ -1,0 +1,21 @@
+The Following analysis paradigms are focused on creating TSE/ERSP maps. 
+please include all folders in your matlab environment 
+
+in OneCondition folder 
+You should modify the file called OneConditionExtractTSEForAllCH
+Given that you have cleaned epoched data from different subjects this script will provide you with 
+A figure for each subject x electrode showing their TSE / ERSP 
+An Average TSE/ERSP figure per electrode 
+a STD TSE/ERSP figure per electrode
+
+In TwoCondtiions folder 
+You should modify the file called TwoConditionsExtractTSEForAllCH
+Given that you have cleaned epoched data from different subjects this script will provide you with 
+A figure for each subject x electrode x condition showing their TSE / ERSP 
+An Average TSE/ERSP figure per electrode per condition 
+a STD TSE/ERSP figure per electrode per condition 
+a Wilcoxon Ranked-sum test Map per electrode showcasing where the two conditions differes from each other significantly.
+
+In the FigureHelperScripts 
+You find the script which modifies all the figures to look as they do. 
+you are free to modify this file as you pleae. 

@@ -1,0 +1,45 @@
+Through the scripts many automatic steps 
+is tacken to preprocess the files. 
+However, there is a number of actions 
+which you have to do yourself. 
+
+1. run triggersAndLocationGtecEEGdata.m
+this will load in the g.tecx formatted data
+tell it which channel includes triggers. 
+extract unwanted channels and add location 
+information. 
+(this script is only viable for g.tec data, this means for any other EEG
+data this script should be changed)
+
+2. run filteringEEG.m
+this will apply 
+High-pass - 0.5
+Low-pass - 100
+Notch 48-52
+Extract only art data with 5 sec rest 
+(triggers 1-40, 5sec before and 40 sec after)
+
+3. manually inspect the channels 
+interpolate or remove bad channels depends 
+on the result 
+
+4. run Reference_ICA.m 
+this will re-reference the signal the average
+of the channels, thus make it comparable 
+to other studies. Then the script will run 
+ICA analysis. 
+
+5. manually remove bad ICA Components using
+the plugin MARA as a help to identify bad ICs
+or visually inspect it. 
+
+6. run EpochEEG.m
+This will epoch the data and remove non epoch
+related data from the dataset. 
+
+7. run SeperateConditions.m 
+this script will create and save the number 
+of conditions you have in your dataset. 
+now it is into two conditions. However it can 
+be into as many as you want, simply just 
+edit the file. 
