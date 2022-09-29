@@ -1,10 +1,10 @@
 %creates maps of the stds, average and the tests and format everyone of
 %them so they follow the same standard as the the maps created by the ERSP
 %maps
-function createTSEmaps (locations, avrConditionOne, avrConditionTwo, stdConditionOne, stdConditionTwo, stat)
+function createTSEmaps (EEG ,locations, avrConditionOne, avrConditionTwo, stdConditionOne, stdConditionTwo, stat, xDim, yDim)
 
-y = 200; 
-x = 793; 
+y = yDim; 
+x = xDim; 
 
 for e = 1:size(EEG.chanlocs,2)
     electrodeInfo = locations(1,e);

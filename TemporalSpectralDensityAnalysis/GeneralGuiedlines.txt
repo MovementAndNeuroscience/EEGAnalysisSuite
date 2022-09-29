@@ -7,6 +7,7 @@ Given that you have cleaned epoched data from different subjects this script wil
 A figure for each subject x electrode showing their TSE / ERSP 
 An Average TSE/ERSP figure per electrode 
 a STD TSE/ERSP figure per electrode
+It calls the helper scripts createTSEmapsOneCondition and RightImageProperties
 
 In TwoCondtiions folder 
 You should modify the file called TwoConditionsExtractTSEForAllCH
@@ -15,7 +16,8 @@ A figure for each subject x electrode x condition showing their TSE / ERSP
 An Average TSE/ERSP figure per electrode per condition 
 a STD TSE/ERSP figure per electrode per condition 
 a Wilcoxon Ranked-sum test Map per electrode showcasing where the two conditions differes from each other significantly.
+It calls the helper scripts createTSEmaps and RightImageProperties
 
 In the FigureHelperScripts 
 You find the script which modifies all the figures to look as they do. 
-you are free to modify this file as you pleae. 
+you are free to modify this file as you please. 

@@ -14,6 +14,8 @@
     files = dir ('*.set'); 
     noComp = 1; 
     locations = EEG.chanlocs;
+    stimulusStartMilliSec = EEG.xmin*1000;
+    stimulusEndMilliSec = EEG.xmax*1000; 
     % Loop through all files
     for n = 1:length(files)
 
@@ -38,7 +40,7 @@ for e = 1:size(EEG.chanlocs,2)  %the number of electrodes
         newTitle = strcat(nameOfFile,conditionOneName);
     end
 
-    [erspStat(n,e,:,:),itc,powbase,times,freqs,erspboot,itcboot] = newtimef( EEG.data(e,:,:), EEG.pnts, [EEG.xmin EEG.xmax]*1000, EEG.srate, [3 0.5],  'baseline',[baselineLengthsMinusMilliSec - 0], 'alpha',0.05, 'freqs', [lowestFrequence highestFrequence], 'title', newTitle);
+    [erspStat(n,e,:,:),itc,powbase,times,freqs,erspboot,itcboot] = newtimef( EEG.data(e,:,:), EEG.pnts, [stimulusStartMilliSec stimulusEndMilliSec], EEG.srate, [3 0.5],  'baseline',[baselineLengthsMinusMilliSec - 0], 'alpha',0.05, 'freqs', [lowestFrequence highestFrequence], 'title', newTitle);
     
     sub = num2str(noComp);
     
@@ -60,8 +62,8 @@ for e = 1:size(EEG.chanlocs,2)  %the number of electrodes
     
     %without bootstrap comparisson. 
     
-    [ersp(n,e,:,:),itc,powbase,times,freqs,erspboot,itcboot] = newtimef( EEG.data(e,:,:), EEG.pnts, [EEG.xmin EEG.xmax]*1000, EEG.srate, [3 0.5],  'baseline',[baselineLengthsMinusMilliSec - 0], 'freqs', [lowestFrequence highestFrequence], 'title', newTitle);
-            pop_newtimef( EEG, e, 2, [-5000 39996], [3 0.5] , 'topovec', 2, 'elocs', EEG.chanlocs, 'chaninfo', EEG.chaninfo, 'caption', electrodeInfo.labels, 'baseline',[baselineLengthsMinusMilliSec - 0], 'freqs', [lowestFrequence highestFrequence], 'plotphase', 'off', 'padratio', 1);
+    [ersp(n,e,:,:),itc,powbase,times,freqs,erspboot,itcboot] = newtimef( EEG.data(e,:,:), EEG.pnts, [stimulusStartMilliSec stimulusEndMilliSec], EEG.srate, [3 0.5],  'baseline',[baselineLengthsMinusMilliSec - 0], 'freqs', [lowestFrequence highestFrequence], 'title', newTitle);
+            pop_newtimef( EEG, 1, e, [stimulusStartMilliSec stimulusEndMilliSec], [3 0.5] , 'topovec', 2, 'elocs', EEG.chanlocs, 'chaninfo', EEG.chaninfo, 'caption', electrodeInfo.labels, 'baseline',[baselineLengthsMinusMilliSec - 0], 'freqs', [lowestFrequence highestFrequence], 'plotphase', 'off', 'padratio', 1);
 
     sub = num2str(noComp);
     
@@ -86,7 +88,7 @@ for e = 1:size(EEG.chanlocs,2)  %the number of electrodes
     if(n+1 <= length(files))
         if mod(m,2) == 0
         figure; 
-        [difErsp{noComp,e},itc2,powbase2,times2,freqs2,erspboot2,itcboot2] = newtimef( {ALLEEG(n).data(1,:,:) ALLEEG(n+1).data(1,:,:)}, EEG.pnts, [EEG.xmin EEG.xmax]*1000, EEG.srate, [3 0.5],  'baseline',[baselineLengthsMinusMilliSec - 0], 'alpha',0.05, 'freqs', [lowestFrequence highestFrequence]);
+        [difErsp{noComp,e},itc2,powbase2,times2,freqs2,erspboot2,itcboot2] = newtimef( {ALLEEG(n).data(1,:,:) ALLEEG(n+1).data(1,:,:)}, EEG.pnts, [stimulusStartMilliSec stimulusEndMilliSec], EEG.srate, [3 0.5],  'baseline',[baselineLengthsMinusMilliSec - 0], 'alpha',0.05, 'freqs', [lowestFrequence highestFrequence]);
         
         sub = num2str(noComp);
     
@@ -122,8 +124,8 @@ end
     sessions = length(files);
     comparissons = sessions/2; 
     electrodes = 20; % the number of electrodes 
-    xPos = 793;
-    yPos = 200; 
+    xDim = 793;
+    yDim = 200; 
     
     conditionOneERSP = 1;
     conditionOneERSPStat = 1;
@@ -143,8 +145,8 @@ end
     for s = 1:sessions
         
         for e = 1:electrodes
-            for x = 1:xPos
-                for y = 1:yPos
+            for x = 1:xDim
+                for y = 1:yDim
                     if mod(s,2) == 1
                             s2 = s*0.5+0.5;
                     conditionOneERSP(s2,e,x,y) = ersp(s,e,x,y);
@@ -162,8 +164,8 @@ end
     %getting the info out of the cells in the difErsp
     for c = 1:comparissons
         for e = 1:electrodes
-            for x = 1:xPos
-                for y = yPos
+            for x = 1:xDim
+                for y = yDim
                     
                     noCelldiffERSP(c,e,x,y) = difErsp{c,e}{1,3}(x,y);
                     
@@ -173,8 +175,8 @@ end
     end
     
     for e = 1:electrodes; 
-        for x = 1:xPos;
-            for y = 1:yPos
+        for x = 1:xDim;
+            for y = 1:yDim
         averageERSPconditionTwo(e,x,y) = mean(conditionTwoERSP(:,e,x,y));
         averageERSPconditionTwoStat(e,x,y) = mean(conditionTwoERSPStat(:,e,x,y)); 
         averageERSPconditionOne(e,x,y) = mean(conditionOneERSP(:,e,x,y));
@@ -194,6 +196,6 @@ end
         end
     end
 
-    createTSEmaps (locations, averageERSPconditionOne, averageERSPconditionTwo, stdERSPconditionOne, stdERSPconditionTwo, wilcoxontestERSP)
+    createTSEmaps (EEG, locations, averageERSPconditionOne, averageERSPconditionTwo, stdERSPconditionOne, stdERSPconditionTwo, wilcoxontestERSP, xDim, yDim)
     
     

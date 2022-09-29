@@ -1,7 +1,7 @@
-function createTSEmapsOneCondition (locations, avrConditionOne, stdConditionOne)
+function createTSEmapsOneCondition (EEG,locations, avrConditionOne, stdConditionOne, xDim, yDim)
 
-y = 200; 
-x = 793; 
+y = yDim; 
+x = xDim; 
 
 for e = 1:size(EEG.chanlocs,2)
     electrodeInfo = locations(1,e);

@@ -9,10 +9,12 @@
     lowestFrequence = 0.5; 
     highestFrequence = 50; 
     electrodes = size(EEG.chanlocs,2); % the number of electrodes 
-    subjects = length(files);
+    stiimulusLengthsinMilliSec = EEG.xmax*1000;
+    stimulusStartInMilliSec = EEG.xmin*1000;
 
     % Go into that folder and look for all.set files
-    files = dir ('*.set'); 
+    files = dir ('*.set');  
+    subjects = length(files);
     noComp = 1; 
     locations = EEG.chanlocs;
     % Loop through all files
@@ -33,7 +35,7 @@ for e = 1:electrodes  %the number of electrodes
     newTitle = electrodeInfo.labels; 
     newTitle = strcat(newTitle,conditionName);
 
-    [ERSPstat(n,e,:,:),itc,powbase,times,freqs,erspboot,itcboot] = newtimef( EEG.data(e,:,:), EEG.pnts, [EEG.xmin EEG.xmax]*1000, EEG.srate, [3 0.5],  'baseline',[baselineLengthsMinusMilliSec 0], 'alpha',0.05, 'freqs', [lowestFrequence highestFrequence], 'title', newTitle);
+    [ERSPstat(n,e,:,:),itc,powbase,times,freqs,erspboot,itcboot] = newtimef( EEG.data(e,:,:), EEG.pnts, [stimulusStartInMilliSec stiimulusLengthsinMilliSec], EEG.srate, [3 0.5],  'baseline',[baselineLengthsMinusMilliSec 0], 'alpha',0.05, 'freqs', [lowestFrequence highestFrequence], 'title', newTitle);
     
     sub = num2str(noComp);
     
@@ -49,8 +51,8 @@ for e = 1:electrodes  %the number of electrodes
     
     %without bootstrap comparisson. 
     
-    [ERSP(n,e,:,:),itc,powbase,times,freqs,erspboot,itcboot] = newtimef( EEG.data(e,:,:), EEG.pnts, [EEG.xmin EEG.xmax]*1000, EEG.srate, [3 0.5],  'baseline',[baselineLengthsMinusMilliSec 0], 'freqs', [lowestFrequence highestFrequence], 'title', newTitle);
-            pop_newtimef( EEG, e, 2, [-5000  39996], [3         0.5] , 'topovec', 2, 'elocs', EEG.chanlocs, 'chaninfo', EEG.chaninfo, 'caption', electrodeInfo.labels, 'baseline',[baselineLengthsMinusMilliSec 0], 'freqs', [lowestFrequence highestFrequence], 'plotphase', 'off', 'padratio', 1);
+    [ERSP(n,e,:,:),itc,powbase,times,freqs,erspboot,itcboot] = newtimef( EEG.data(e,:,:), EEG.pnts, [stimulusStartInMilliSec stiimulusLengthsinMilliSec], EEG.srate, [3 0.5],  'baseline',[baselineLengthsMinusMilliSec 0], 'freqs', [lowestFrequence highestFrequence], 'title', newTitle);
+            pop_newtimef( EEG, 1, e, [stimulusStartInMilliSec  stiimulusLengthsinMilliSec], [3 0.5] , 'topovec', 2, 'elocs', EEG.chanlocs, 'chaninfo', EEG.chaninfo, 'caption', electrodeInfo.labels, 'baseline',[baselineLengthsMinusMilliSec 0], 'freqs', [lowestFrequence highestFrequence], 'plotphase', 'off', 'padratio', 1);
     sub = num2str(noComp);
     
     nameOfFile = 'Sub';
@@ -80,8 +82,8 @@ end
     %ersp(session abs (odd) or fig (even),electrode,x(793),y(200))
     %difErsp{subject,electrode}{1,3}(x(793),y(200))
     % 
-    xPos = 793;
-    yPos = 200; 
+    xDim = 793;
+    yDim = 200; 
     
     averageERSP = 1;
     averageERSPStat = 1; 
@@ -89,8 +91,8 @@ end
     stdERSPStat = 1; 
     
     for e = 1:electrodes 
-        for x = 1:xPos
-            for y = 1:yPos
+        for x = 1:xDim
+            for y = 1:yDim
         averageERSP(e,x,y) = mean(ERSP(:,e,x,y));
         averageERSPStat(e,x,y) = mean(ERSPstat(:,e,x,y)); 
         stdERSP(e,x,y) = std(ERSP(:,e,x,y));
@@ -99,6 +101,6 @@ end
         end
     end
 
-    createTSEmapsOneCondition(locations, averageERSP, stdERSP)
+    createTSEmapsOneCondition(EEG,locations, averageERSP, stdERSP,xDim,yDim)
     
     
