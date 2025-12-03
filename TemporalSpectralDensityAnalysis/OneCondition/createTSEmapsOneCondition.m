@@ -1,24 +1,26 @@
-function createTSEmapsOneCondition (EEG,locations, avrConditionOne, stdConditionOne, xDim, yDim)
+function createTSEmapsOneCondition (EEG,locations, avrConditionOne, stdConditionOne, xDim, yDim, conditionOneName, avrlimit, stdlimit)
 
 y = yDim; 
 x = xDim; 
+averagegraphname = strcat('Average ',  conditionOneName);
+stdgraphName = strcat('Standard deviation ', conditionOneName);
 
 for e = 1:size(EEG.chanlocs,2)
     electrodeInfo = locations(1,e);
     
-    SetupTSEMapsProperties('Average Condition One  ',electrodeInfo, avrConditionOne, e, x, y);
+    SetupTSEMapsProperties(averagegraphname,electrodeInfo, avrConditionOne, e, x, y, avrlimit, "avr");
 
-    SetupTSEMapsProperties('Standard deviation Condition One  ',electrodeInfo, stdConditionOne, e, x, y);
+    SetupTSEMapsProperties(stdgraphName,electrodeInfo, stdConditionOne, e, x, y, stdlimit, "std");
 end 
 
-function SetupTSEMapsProperties(description,electrodeInfo, erpsData, electrode, xdim, ydim)
+function SetupTSEMapsProperties(description,electrodeInfo, erpsData, electrode, xdim, ydim, limit, type)
 title = description;
 title = strcat(title, ' - ');
 title = strcat(title,electrodeInfo.labels);
 
 electrodeData = erpsData(electrode,:,:);
-electrodeData = reshape(electrodeData, [xdim ydim]);
+electrodeData = reshape(electrodeData, [xdim, ydim]);
 figure 
 imagesc(electrodeData)
-RightImageProperties(title, gca);
+RightImagePropertiesRescale(title, gca, limit, type);
 

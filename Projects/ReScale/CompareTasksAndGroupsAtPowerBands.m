@@ -29,7 +29,7 @@
 % then you write the first letter found in each of those defined groups. 
 % in this case our Adult datasets starts with a "D" and our Young
 % dataset starts with a "y"
-filepath= 'C:\Users\tvh307\OneDrive - University of Copenhagen\Documents\MovementNeuroscience\ReScale\ReScaleEEGData'; % put your filepath
+filepath= 'C:\Users\tvh307\OneDrive - University of Copenhagen\Documents\MovementNeuroscience\ReScale\ReScaleEEGData\TrialDAta\ForPowerAnalysis'; % put your filepath
 files = dir(fullfile(filepath, '*.set'));
 
 EEGLabPath = 'C:\eeglab2022.0'; % change the filepath for your eeglab
@@ -42,6 +42,7 @@ groupSearchCriteria = ["D"; "y"];
 
 % Defining different condition of interest 
 % we are interested in three different condition categories 
+
 
 symmetricConditions = [2,3]; 
 asymmetricConditions = [4,5];

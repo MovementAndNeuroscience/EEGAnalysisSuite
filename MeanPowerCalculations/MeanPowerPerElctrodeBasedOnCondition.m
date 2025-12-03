@@ -8,8 +8,9 @@
 % we are interested in, in relation to the participant at hand. 
 
 
-function [meanAlphaForCondition, meanHighBetaForCondition, meanLowBetaForCondition, meanBetaForCondition] = MeanPowerPerElctrodeBasedOnCondition(epochs, electrodesOfInterest, conditionsOfInterest, EEG)
+function [meanThetaForCondition, meanAlphaForCondition, meanHighBetaForCondition, meanLowBetaForCondition, meanBetaForCondition] = MeanPowerPerElctrodeBasedOnCondition(epochs, electrodesOfInterest, conditionsOfInterest, EEG)
 
+meanThetaForCondition = zeros(1,size(electrodesOfInterest,2));
 meanAlphaForCondition = zeros(1,size(electrodesOfInterest,2));
 meanHighBetaForCondition = zeros(1,size(electrodesOfInterest,2));
 meanLowBetaForCondition = zeros(1,size(electrodesOfInterest,2));
@@ -22,16 +23,21 @@ nfft=fs/2; % PSD has a resolution of 2Hz
 
     for i=1:size(epochs,2)
         epochCell=epochs(i);
-        epoch = cell2mat(epochCell{1}(1)); 
+        epoch = cell2mat(epochCell{1}(1));
+
+        if isempty(epoch)
+            epoch = cell2mat(epochCell{1}(2));
+        end
 
         if any(conditionsOfInterest(:) == epoch)
 
         [pxx,f] = pwelch(squeeze(EEG.data(:,:,i))',hamming(nfft),0,nfft,fs); % PSD is estimated on all the channels
         
             for electrode= 1:size(electrodesOfInterest,2)
+            ThetaForCondition(acceptedEpochs,electrodeCounterIndex) = mean(pxx(2:4,electrodesOfInterest(1,electrode),1)); % estimation of alpha (2-6 Hz) for single subject 
             AlphaForCondition(acceptedEpochs,electrodeCounterIndex) = mean(pxx(5:7,electrodesOfInterest(1,electrode),1)); % estimation of alpha (8-12 Hz) for single subject 
-            HighBetaForCondition(acceptedEpochs, electrodeCounterIndex) = mean(pxx(8:12,electrodesOfInterest(1,electrode),1)); % estimation of low beta (14-22 Hz) for single subject
-            LowBetaForCondition(acceptedEpochs,electrodeCounterIndex) = mean(pxx(13:17,electrodesOfInterest(1,electrode),1)); % estimation of high beta (24-32 Hz) for single subject
+            LowBetaForCondition(acceptedEpochs, electrodeCounterIndex) = mean(pxx(8:12,electrodesOfInterest(1,electrode),1)); % estimation of low beta (14-22 Hz) for single subject
+            HighBetaForCondition(acceptedEpochs,electrodeCounterIndex) = mean(pxx(13:17,electrodesOfInterest(1,electrode),1)); % estimation of high beta (24-32 Hz) for single subject
             BetaForCondition(acceptedEpochs,electrodeCounterIndex) = mean(pxx(8:17,electrodesOfInterest(1,electrode),1));% estimation of total beta (14-32 Hz) for single subject
             
             electrodeCounterIndex = electrodeCounterIndex + 1;
@@ -42,7 +48,8 @@ nfft=fs/2; % PSD has a resolution of 2Hz
     end
 
     for i=1:size(meanAlphaForCondition,2)
-        
+
+        meanThetaForCondition(1,i) = mean(ThetaForCondition(:,i));
         meanAlphaForCondition(1,i) = mean(AlphaForCondition(:,i)); 
         meanHighBetaForCondition(1,i) = mean(HighBetaForCondition(:,i)); 
         meanLowBetaForCondition(1,i) = mean(LowBetaForCondition(:,i)); 
